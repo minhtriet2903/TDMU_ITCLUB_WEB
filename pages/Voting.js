@@ -4,6 +4,7 @@ const { Meta } = Card;
 
 const Voting = () => (
   <div className="ml-5 mt-5">
+    fsdfsdfsdf
     <Card
       hoverable
       style={{
