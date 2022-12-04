@@ -1,5 +1,5 @@
 import { List } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,
@@ -12,10 +12,52 @@ import {
   faQuestion,
   faCheckToSlot,
 } from "@fortawesome/free-solid-svg-icons";
+import { Menu } from "antd";
+function getItem(label, key, icon, children, type) {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  };
+}
+
+const items = [
+  getItem(
+    "Quản lý",
+    "dashboard",
+    <FontAwesomeIcon icon={faEnvelope} className="text-[#3380FF]" />
+  ),
+  getItem(
+    "Nghiên cứu khoa học",
+    "research",
+    <FontAwesomeIcon icon={faBookOpenReader} className="text-[#3380FF]" />
+  ),
+  getItem(
+    "Sự kiện",
+    "event",
+    <FontAwesomeIcon icon={faCalendarDays} className="text-[#3380FF]" />,
+    [
+      getItem("Option 5", "5"),
+      getItem("Option 6", "6"),
+      getItem("Submenu", "sub3", null, [
+        getItem("Option 7", "7"),
+        getItem("Option 8", "8"),
+      ]),
+    ]
+  ),
+  getItem(
+    "Group",
+    "grp",
+    null,
+    [getItem("Option 13", "13"), getItem("Option 14", "14")],
+    "group"
+  ),
+];
 
 const SideBar = () => {
   const data = [
-    { icon: faEnvelope, title: "Trang chủ" },
     { icon: faBookOpenReader, title: "Nghiên cứu khoa học" },
     { icon: faRankingStar, title: "Bảng xếp hạng" },
     { icon: faCalendarDays, title: "Sự kiện" },
@@ -45,7 +87,8 @@ const SideBar = () => {
       dataSource={data}
       renderItem={(item) => (
         <div
-          className="flex justify-start hover:bg-[#ECF4FF] hover:border-r-[3px] border-[#3380FF] 
+          className="flex justify-start hover:bg-[#ECF4FF] 
+          hover:border-r-[3px] border-[#3380FF] 
         ml-[15px] my-[15px] items-center pl-[30px] h-[40px] cursor-pointer mt-3"
         >
           <FontAwesomeIcon icon={item.icon} className="text-[#3380FF]" />
