@@ -118,7 +118,7 @@ export default function Article() {
         </div>
         <Link href={"/Voting"}>
           <a>
-            <button>Voting</button>
+            <button>chuc nawng moi viet</button>
           </a>
         </Link>
       </div>

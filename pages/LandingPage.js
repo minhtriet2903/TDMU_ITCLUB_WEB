@@ -6,10 +6,15 @@ import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 import Meta from "antd/lib/card/Meta";
 import NavBar from "../src/components/NavBar";
+import Link from "next/link";
 
 const images = ["/a.jpg", "/b.jpg", "/c.jpg"];
 
 const Landing = () => {
+  const handleClickArticle = () => {
+    console.log(1);
+  };
+
   return (
     <div>
       <NavBar></NavBar>
@@ -45,42 +50,47 @@ const Landing = () => {
       <div className="mt-10 font-bold text-2xl text-center">
         CÁC HOẠT ĐỘNG NỔI BẬT
       </div>
-      <div className="flex justify-center">
-        <div className="flex justify-center mt-5 w-3/5">
-          <Card
-            style={{
-              width: 300,
-              margin: 8,
-            }}
-            cover={<img alt="example" src="/chinhphucmuathi.jpg" />}
-            actions={[]}
-          >
-            <Meta
-              className="flex-nowrap flex"
-              title="Chương trình chinh phục mùa thi HK2 2022 - 2023 title"
-              description="Chương trình chinh phục mùa thi hỗ trợ các bạn sinh
+      <Link href={"https://reactjs.org/docs/hooks-state.html"}>
+        <div
+          className="flex justify-center cursor-pointer"
+          onClick={handleClickArticle}
+        >
+          <div className="flex justify-center mt-5 w-3/5">
+            <Card
+              style={{
+                width: 300,
+                margin: 8,
+              }}
+              cover={<img alt="example" src="/chinhphucmuathi.jpg" />}
+              actions={[]}
+            >
+              <Meta
+                className="flex-nowrap flex"
+                title="Chương trình chinh phục mùa thi HK2 2022 - 2023 title"
+                description="Chương trình chinh phục mùa thi hỗ trợ các bạn sinh
               viên ôn tập, chuẩn bị hành trang để đạt kết quả cao trong cuộc thi 
               cuối kì. Là sự kiện mỗi kì của CLB IT dành cho các bạn sinh viên"
-            />
-          </Card>
-          <Card
-            style={{
-              width: 300,
-              margin: 8,
-            }}
-            cover={<img alt="example" src="/chinhphucmuathi.jpg" />}
-            actions={[]}
-          >
-            <Meta
-              className="flex-nowrap flex"
-              title="Chương trình chinh phục mùa thi HK2 2022 - 2023 title"
-              description="Chương trình chinh phục mùa thi hỗ trợ các bạn sinh
+              />
+            </Card>
+            <Card
+              style={{
+                width: 300,
+                margin: 8,
+              }}
+              cover={<img alt="example" src="/chinhphucmuathi.jpg" />}
+              actions={[]}
+            >
+              <Meta
+                className="flex-nowrap flex"
+                title="Chương trình chinh phục mùa thi HK2 2022 - 2023 title"
+                description="Chương trình chinh phục mùa thi hỗ trợ các bạn sinh
               viên ôn tập, chuẩn bị hành trang để đạt kết quả cao trong cuộc thi 
               cuối kì. Là sự kiện mỗi kì của CLB IT dành cho các bạn sinh viên"
-            />
-          </Card>
+              />
+            </Card>
+          </div>
         </div>
-      </div>
+      </Link>
       <div className="mt-10 font-bold text-2xl text-center">
         CÁC DỰ ÁN NGHIÊN CỨU KHOA HỌC
       </div>
