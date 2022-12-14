@@ -7,6 +7,7 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 
 const MainRoutes = require("./routes/main");
 const UserRoutes = require("./routes/user");
+const TicketRoutes = require("./routes/ticket");
 
 // set up express app
 const app = express();
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
 app.use(MainRoutes);
 app.use(UserRoutes);
+app.use(TicketRoutes);
 
 mongoose.Promise = global.Promise;
 
