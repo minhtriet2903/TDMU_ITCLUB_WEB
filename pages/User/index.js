@@ -280,6 +280,71 @@ const App = () => {
                   </div>
                 </div>
               </form>
+
+              <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" class="py-3 px-6">
+                        #
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Contest
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Rank
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        Rating change
+                      </th>
+                      <th scope="col" class="py-3 px-6">
+                        New rating
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      
+                      <td class="py-4 px-6">1</td>
+                      <th
+                        scope="row"
+                        class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        Codeforces Round #806 (Div. 4)
+                      </th>
+                      <td class="py-4 px-6">1805</td>
+                      <td class="py-4 px-6">+522</td>
+                      <td class="py-4 px-6">522</td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      
+                      <td class="py-4 px-6">2</td>
+                      <th
+                        scope="row"
+                        class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        Codeforces Round #807 (Div. 2)
+                      </th>
+                      <td class="py-4 px-6">8170</td>
+                      <td class="py-4 px-6">+258</td>
+                      <td class="py-4 px-6">780</td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                      
+                      <td class="py-4 px-6">3</td>
+                      <th
+                        scope="row"
+                        class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        Educational Codeforces Round 132 (Rated for Div. 2)
+                      </th>
+                      <td class="py-4 px-6">5423</td>
+                      <td class="py-4 px-6">+84</td>
+                      <td class="py-4 px-6">1254</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
