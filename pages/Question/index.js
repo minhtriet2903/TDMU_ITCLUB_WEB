@@ -4,7 +4,7 @@ import { faCircleQuestion, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Ticket = () => {
   return (
-    <div>
+    <div style={{backgroundColor: "#f0f8ff"}}>
       <div className="flex mt-10 justify-center">
         <div className="w-[110px] h-[190px] mr-5 flex flex-col justify-center ml-5">
           <div className="w-full bg-green-400 font-bold px-1 flex justify-end items-center">
@@ -32,8 +32,8 @@ const Ticket = () => {
                 resurrect this competi
               </div>
               <div className="flex">
-                <div className="border p-2 rounded"> AR</div>
-                <div className="border p-2 rounded ml-2"> GAME</div>
+                <div className="border p-2 rounded"> Like</div>
+                <div className="border p-2 rounded ml-2"> Reply</div>
               </div>
             </div>
             <div className="flex items-center justify-end">
@@ -78,8 +78,8 @@ const Ticket = () => {
                 resurrect this competi
               </div>
               <div className="flex">
-                <div className="border p-2 rounded"> AR</div>
-                <div className="border p-2 rounded ml-2"> GAME</div>
+                <div className="border p-2 rounded">Like</div>
+                <div className="border p-2 rounded ml-2"> Reply</div>
               </div>
             </div>
             <div className="flex items-center justify-end">
@@ -97,6 +97,40 @@ const Ticket = () => {
           </div>
         </div>
       </div>
+      <br/>
+      <hr/>
+      <div style={{backgroundColor: "#cafafe", width: "500px",marginLeft: "35%",marginTop: "5%", borderRadius: "10%"}}>
+        <div className="container py-5">
+            <div className="row justify-content-center ">
+                <div className="col-6"> 
+                <h1 className="text-center" style={{fontSize: "250%", color: "blue", fontFamily: "arial"}}><b>CÂU HỎI THẮC MẮC</b></h1>
+                    <from >
+                    <div className="mb-3" style={{marginLeft: "20%"}}>
+                            <label htmlFor="id" style={{fontFamily: "arial"}}><b>Tên :</b></label>
+                           <div> <input
+                             type = "id" id="id" name="id" className="form-control" placeholder="Tên..." style={{borderRadius: "15px",width: "300px", height: "40px", padding: "3%"}}/></div>
+                    </div>
+                    <div className="mb-3" style={{marginLeft: "20%"}}>
+                            <label htmlFor="email" style={{fontFamily: "arial"}}><b>Email:</b></label>
+                            <div><input type = "email" id="email" name="email" className="form-control" placeholder="Email..." style={{padding: "3%",borderRadius: "15px",width: "300px", height: "40px"}}/></div>
+                        </div>
+                        <div className="mb-3" style={{marginLeft: "20%"}}>
+                            <label htmlFor="phone" style={{fontFamily: "arial"}}><b>Số điện thoại:</b></label>
+                            <div><input type = "phone" id="phone" name="phone" className="form-control" placeholder="Số điện thoại..." style={{padding: "3%",borderRadius: "15px",width: "300px", height: "40px"}}/></div>
+                        </div>
+                        <div className="mb-3" style={{marginLeft: "20%"}}>
+                            <label htmlFor="question" style={{fontFamily: "arial"}}><b>Câu hỏi thắc mắc:</b></label>
+                            <div><input type = "question" id="question" name="question" className="form-control" placeholder="Viết câu hỏi..." style={{padding: "3%", borderRadius: "15px",width: "300px", height: "40px"}}/></div>
+                            
+                        </div>
+                        <button className="btn btn-primary" style={{backgroundColor: "blue",color:"white",  borderRadius: "20px", borderWidth: "2px", borderColor: "black", marginLeft: "40%", width: "100px", height: "40px"}}>
+                            Gửi
+                        </button> 
+                    </from>
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
   );
 };
