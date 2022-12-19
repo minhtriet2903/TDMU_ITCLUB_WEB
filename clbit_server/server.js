@@ -8,6 +8,7 @@ const mongoosePaginate = require("mongoose-paginate-v2");
 const MainRoutes = require("./routes/main");
 const UserRoutes = require("./routes/user");
 const TicketRoutes = require("./routes/ticket");
+const CodeforceAccountRoutes = require("./routes/codeforceAccount");
 
 // set up express app
 const app = express();
@@ -19,6 +20,7 @@ app.use(logger("dev"));
 app.use(MainRoutes);
 app.use(UserRoutes);
 app.use(TicketRoutes);
+app.use(CodeforceAccountRoutes);
 
 mongoose.Promise = global.Promise;
 

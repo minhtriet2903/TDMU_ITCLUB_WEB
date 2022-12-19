@@ -8,14 +8,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Input, Space, Table, Tag } from "antd";
 import ResearchTicketAdmin from "./ResearchTicketAdmin";
+import CodeforceTable from "./CodeforceTable";
 import axios from "axios";
 
 const { Search } = Input;
 export default function Article() {
   const onSearch = (value) => console.log(value);
-  const [menuIndex, setMenuIndex] = useState("nckh");
+  const [menuIndex, setMenuIndex] = useState("codeforce");
 
   const [data, setData] = useState([]);
+  const [codeforceTableData, setCodeforceTableData] = useState([]);
 
   useEffect(() => {
     if (menuIndex == "nckh")
@@ -29,7 +31,43 @@ export default function Article() {
           // handle error
           console.log(error);
         });
+    else if (menuIndex == "codeforce")
+      axios
+        .get("http://localhost:5035/codeforceAccount", {})
+        .then(function (response) {
+          console.log(response.data);
+          setCodeforceTableData(response.data.CodeforceAccount);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
   }, [menuIndex]);
+
+  useEffect(() => {
+    if (menuIndex == "nckh")
+      axios
+        .get("http://localhost:5035/ticket", {})
+        .then(function (response) {
+          console.log(response);
+          setData(response.data.Ticket);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    else if (menuIndex == "codeforce")
+      axios
+        .get("http://localhost:5035/codeforceAccount", {})
+        .then(function (response) {
+          console.log(response.data);
+          setCodeforceTableData(response.data.CodeforceAccount);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+  }, []);
 
   return (
     <div className="flex h-full">
@@ -57,6 +95,9 @@ export default function Article() {
           </div>
         </div>
         {menuIndex == "nckh" && <ResearchTicketAdmin data={data} />}
+        {menuIndex == "codeforce" && (
+          <CodeforceTable data={codeforceTableData} />
+        )}
       </div>
     </div>
   );
