@@ -9,12 +9,13 @@ import {
 import { Input, Space, Table, Tag } from "antd";
 import ResearchTicketAdmin from "./ResearchTicketAdmin";
 import CodeforceTable from "./CodeforceTable";
+import OnlineContestRanking from "./OnlineContestRanking";
 import axios from "axios";
 
 const { Search } = Input;
 export default function Article() {
   const onSearch = (value) => console.log(value);
-  const [menuIndex, setMenuIndex] = useState("codeforce");
+  const [menuIndex, setMenuIndex] = useState("onlineContestRanking");
 
   const [data, setData] = useState([]);
   const [codeforceTableData, setCodeforceTableData] = useState([]);
@@ -42,6 +43,16 @@ export default function Article() {
           // handle error
           console.log(error);
         });
+    else if (menuIndex == "onlineContestRanking")
+      axios
+        .get("http://localhost:5035/onlineContest", {})
+        .then(function (response) {
+          setCodeforceTableData(response.data.allOnlineContests);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
   }, [menuIndex]);
 
   useEffect(() => {
@@ -60,8 +71,17 @@ export default function Article() {
       axios
         .get("http://localhost:5035/codeforceAccount", {})
         .then(function (response) {
-          console.log(response.data);
           setCodeforceTableData(response.data.CodeforceAccount);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    else if (menuIndex == "onlineContestRanking")
+      axios
+        .get("http://localhost:5035/onlineContest", {})
+        .then(function (response) {
+          setCodeforceTableData(response.data.allOnlineContests);
         })
         .catch(function (error) {
           // handle error
@@ -97,6 +117,9 @@ export default function Article() {
         {menuIndex == "nckh" && <ResearchTicketAdmin data={data} />}
         {menuIndex == "codeforce" && (
           <CodeforceTable data={codeforceTableData} />
+        )}
+        {menuIndex == "onlineContestRanking" && (
+          <OnlineContestRanking data={codeforceTableData} />
         )}
       </div>
     </div>
