@@ -10,6 +10,7 @@ import { Input, Space, Table, Tag } from "antd";
 import ResearchTicketAdmin from "./ResearchTicketAdmin";
 import CodeforceTable from "./CodeforceTable";
 import axios from "axios";
+import TotalPost from "./totalPost";
 
 const { Search } = Input;
 export default function Article() {
@@ -42,6 +43,18 @@ export default function Article() {
           // handle error
           console.log(error);
         });
+        else if (menuIndex == "question")
+      axios
+        .get("http://localhost:5035/totalPost", {})
+        .then(function (response) {
+          console.log(response);
+          setData(response.data.totalPost);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+        
   }, [menuIndex]);
 
   useEffect(() => {
@@ -66,7 +79,18 @@ export default function Article() {
         .catch(function (error) {
           // handle error
           console.log(error);
-        });
+        }); 
+        else if (menuIndex == "question")
+      axios
+        .get("http://localhost:5035/totalPost", {})
+        .then(function (response) {
+          console.log(response);
+          setData(response.data.totalPost);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });              
   }, []);
 
   return (
@@ -98,6 +122,7 @@ export default function Article() {
         {menuIndex == "codeforce" && (
           <CodeforceTable data={codeforceTableData} />
         )}
+        {menuIndex =="question" && <TotalPost data={data}/>}
       </div>
     </div>
   );
