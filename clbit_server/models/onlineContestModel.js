@@ -6,6 +6,9 @@ const onlineContestSchema = new mongoose.Schema({
   ContestName: {
     type: String,
   },
+  ContestUrl: {
+    type: String,
+  },
   OrganitzedDate: {
     type: Date,
     default: Date.now,

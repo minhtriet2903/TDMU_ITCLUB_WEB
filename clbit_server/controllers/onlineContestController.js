@@ -16,9 +16,10 @@ exports.getAll = (req, res) => {
 };
 
 exports.createOnlineContest = async (req, res) => {
-  const { contestName } = req.body;
+  const { contestName, contestUrl } = req.body;
   const onlineContest = new OnlineContestModel({
     ContestName: contestName,
+    ContestUrl: contestUrl,
   });
 
   return onlineContest

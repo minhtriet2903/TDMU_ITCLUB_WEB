@@ -19,6 +19,8 @@ export default function Article() {
 
   const [data, setData] = useState([]);
   const [codeforceTableData, setCodeforceTableData] = useState([]);
+  const [dataOnlineContest, setDataOnlineContest] = useState([]);
+  const [dataOnlineContestRanking, setDataOnlineContestRanking] = useState([]);
 
   useEffect(() => {
     if (menuIndex == "nckh")
@@ -47,7 +49,7 @@ export default function Article() {
       axios
         .get("http://localhost:5035/onlineContest", {})
         .then(function (response) {
-          setCodeforceTableData(response.data.allOnlineContests);
+          setDataOnlineContest(response.data.allOnlineContests);
         })
         .catch(function (error) {
           // handle error
@@ -81,7 +83,7 @@ export default function Article() {
       axios
         .get("http://localhost:5035/onlineContest", {})
         .then(function (response) {
-          setCodeforceTableData(response.data.allOnlineContests);
+          setDataOnlineContest(response.data.allOnlineContests);
         })
         .catch(function (error) {
           // handle error
@@ -119,7 +121,10 @@ export default function Article() {
           <CodeforceTable data={codeforceTableData} />
         )}
         {menuIndex == "onlineContestRanking" && (
-          <OnlineContestRanking data={codeforceTableData} />
+          <OnlineContestRanking
+            dataOnlineContest={dataOnlineContest}
+            dataOnlineContestRanking={dataOnlineContestRanking}
+          />
         )}
       </div>
     </div>

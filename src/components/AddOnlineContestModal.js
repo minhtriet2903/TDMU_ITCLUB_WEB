@@ -1,46 +1,61 @@
-import React, { useEffect, useState } from "react";
-import { Input, Modal, message, Select } from "antd";
+import React, { useState } from "react";
+import { Input, Modal, message, DatePicker } from "antd";
 import { faStarOfLife } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
-  const [userName, setUserName] = useState("");
-  const [score, setScore] = useState(0);
-  const [ranking, setRanking] = useState(0);
-  const [idContest, setIdContest] = useState([]);
+const AddOnlineContestModal = ({ isModalOpen, showModal, handleCancel }) => {
+  const [contestName, setContestName] = useState("");
+  const [contestUrl, setContestUrl] = useState("");
 
   const [messageApi, contextHolder] = message.useMessage();
 
-  const hanldeAddAccount = () => {};
-
-  const onChangeIdContest = (value) => {
-    console.log(`selected ${value}`);
-  };
-
-  const onSearchContest = (value) => {
-    console.log("search:", value);
-  };
-
-  useEffect(() => {
+  const hanldeAddAccount = () => {
     axios
       .get("http://localhost:5035/onlineContest", {})
       .then(function (response) {
-        const newArrayOfObj = response.data.allOnlineContests.map(
-          ({ ContestName: value, ...rest }) => ({
-            value,
-            ...rest,
-          })
+        let checkExist = response.data.allOnlineContests.filter(
+          (x) => x.contestName == contestName
         );
-        setIdContest(newArrayOfObj);
+        if (checkExist.length > 1) {
+          messageApi.open({
+            type: "error",
+            content: "This contest has already existed",
+          });
+        } else {
+          axios
+            .post("http://localhost:5035/onlineContest", {
+              contestName: contestName,
+              contestUrl: contestUrl,
+            })
+            .then(function (response) {
+              console.log(response);
+              messageApi.open({
+                type: "success",
+                content: "Success",
+              });
+              oncancel();
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
       });
-  }, [isModalOpen]);
+  };
+
+  const onChangeOrganizeDate = (date, dateString) => {
+    console.log(date, dateString);
+  };
 
   return (
     <>
       {contextHolder}
       <Modal
-        title="Thêm tài khoản Codeforce"
+        title="Thêm cuộc thi trực tuyến"
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
@@ -51,7 +66,7 @@ const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
         justify-center cursor-pointer"
         >
           <div className="w-2/5 flex items-center">
-            Tên tài khoản
+            Tên cuộc thi
             <div className="flex items-center cursor-pointer">
               <FontAwesomeIcon
                 icon={faStarOfLife}
@@ -62,9 +77,9 @@ const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
           <div className="w-3/5 flex">
             <Input
               className="!mr-2"
-              placeholder="userName"
-              onChange={(e) => setUserName(e.target.value)}
-              value={userName}
+              placeholder="Tên cuộc thi"
+              onChange={(e) => setContestName(e.target.value)}
+              value={contestName}
             />
           </div>
         </div>
@@ -73,7 +88,24 @@ const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
         justify-center cursor-pointer"
         >
           <div className="w-2/5 flex items-center">
-            Ranking
+            Ngày tổ chức
+            <div className="flex items-center cursor-pointer">
+              <FontAwesomeIcon
+                icon={faStarOfLife}
+                className="w-[8px] h-[8px] ml-1 text-red-600"
+              />
+            </div>
+          </div>
+          <div className="w-3/5 flex">
+            <DatePicker onChange={onChangeOrganizeDate} />
+          </div>
+        </div>
+        <div
+          className="w-[400px] items-center flex h-[50px] rounded-md
+        justify-center cursor-pointer"
+        >
+          <div className="w-2/5 flex items-center">
+            Link cuộc thi
             <div className="flex items-center cursor-pointer">
               <FontAwesomeIcon
                 icon={faStarOfLife}
@@ -84,64 +116,12 @@ const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
           <div className="w-3/5 flex">
             <Input
               className="!mr-2"
-              placeholder="ranking trong cuộc thi"
-              onChange={(e) => setRanking(e.target.value)}
-              value={ranking}
+              placeholder="Link cuộc thi"
+              onChange={(e) => setContestUrl(e.target.value)}
+              value={contestUrl}
             />
           </div>
         </div>
-        <div
-          className="w-[400px] items-center flex h-[50px] rounded-md
-        justify-center cursor-pointer"
-        >
-          <div className="w-2/5 flex items-center">
-            Điểm
-            <div className="flex items-center cursor-pointer">
-              <FontAwesomeIcon
-                icon={faStarOfLife}
-                className="w-[8px] h-[8px] ml-1 text-red-600"
-              />
-            </div>
-          </div>
-          <div className="w-3/5 flex">
-            <Input
-              className="!mr-2"
-              placeholder="Điểm thi"
-              onChange={(e) => setScore(e.target.value)}
-              value={score}
-            />
-          </div>
-        </div>
-        <div
-          className="w-[400px] items-center flex h-[50px] rounded-md
-        justify-center cursor-pointer"
-        >
-          <div className="w-2/5 flex items-center">
-            Contest Tham gia
-            <div className="flex items-center cursor-pointer">
-              <FontAwesomeIcon
-                icon={faStarOfLife}
-                className="w-[8px] h-[8px] ml-1 text-red-600"
-              />
-            </div>
-          </div>
-          <div className="w-3/5 flex">
-            <Select
-              showSearch
-              placeholder="Select contest"
-              optionFilterProp="children"
-              onChange={onChangeIdContest}
-              onSearch={onSearchContest}
-              filterOption={(input, option) =>
-                (option?.value ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={idContest}
-            />
-          </div>
-        </div>
-
         <div className="cursor-pointer" onClick={hanldeAddAccount}>
           Thêm
         </div>
@@ -154,9 +134,9 @@ const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
                       dark:hover:text-white md:dark:hover:bg-transparent"
         onClick={showModal}
       >
-        Thêm kết quả online Contest
+        Thêm cuộc thi trực tuyến
       </a>
     </>
   );
 };
-export default AddOnlineRankingModal;
+export default AddOnlineContestModal;
