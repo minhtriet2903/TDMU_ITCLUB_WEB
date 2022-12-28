@@ -9,16 +9,19 @@ import {
 import { Input, Space, Table, Tag } from "antd";
 import ResearchTicketAdmin from "./ResearchTicketAdmin";
 import CodeforceTable from "./CodeforceTable";
+import OnlineContestRanking from "./OnlineContestRanking";
 import axios from "axios";
 import TotalPost from "./totalPost";
 
 const { Search } = Input;
 export default function Article() {
   const onSearch = (value) => console.log(value);
-  const [menuIndex, setMenuIndex] = useState("codeforce");
+  const [menuIndex, setMenuIndex] = useState("onlineContestRanking");
 
   const [data, setData] = useState([]);
   const [codeforceTableData, setCodeforceTableData] = useState([]);
+  const [dataOnlineContest, setDataOnlineContest] = useState([]);
+  const [dataOnlineContestRanking, setDataOnlineContestRanking] = useState([]);
 
   useEffect(() => {
     if (menuIndex == "nckh")
@@ -43,18 +46,23 @@ export default function Article() {
           // handle error
           console.log(error);
         });
-        else if (menuIndex == "question")
+    else if (menuIndex == "question")
       axios
         .get("http://localhost:5035/totalPost", {})
         .then(function (response) {
           console.log(response);
           setData(response.data.totalPost);
+        });
+    else if (menuIndex == "onlineContestRanking")
+      axios
+        .get("http://localhost:5035/onlineContest", {})
+        .then(function (response) {
+          setDataOnlineContest(response.data.allOnlineContests);
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
-        
   }, [menuIndex]);
 
   useEffect(() => {
@@ -73,24 +81,29 @@ export default function Article() {
       axios
         .get("http://localhost:5035/codeforceAccount", {})
         .then(function (response) {
-          console.log(response.data);
           setCodeforceTableData(response.data.CodeforceAccount);
         })
         .catch(function (error) {
           // handle error
           console.log(error);
-        }); 
-        else if (menuIndex == "question")
+        });
+    else if (menuIndex == "question")
       axios
         .get("http://localhost:5035/totalPost", {})
         .then(function (response) {
           console.log(response);
           setData(response.data.totalPost);
+        });
+    else if (menuIndex == "onlineContestRanking")
+      axios
+        .get("http://localhost:5035/onlineContest", {})
+        .then(function (response) {
+          setDataOnlineContest(response.data.allOnlineContests);
         })
         .catch(function (error) {
           // handle error
           console.log(error);
-        });              
+        });
   }, []);
 
   return (
@@ -122,7 +135,13 @@ export default function Article() {
         {menuIndex == "codeforce" && (
           <CodeforceTable data={codeforceTableData} />
         )}
-        {menuIndex =="question" && <TotalPost data={data}/>}
+        {menuIndex == "question" && <TotalPost data={data} />}
+        {menuIndex == "onlineContestRanking" && (
+          <OnlineContestRanking
+            dataOnlineContest={dataOnlineContest}
+            dataOnlineContestRanking={dataOnlineContestRanking}
+          />
+        )}
       </div>
     </div>
   );
