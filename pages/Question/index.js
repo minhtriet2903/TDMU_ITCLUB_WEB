@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleQuestion, faCheck } from "@fortawesome/free-solid-svg-icons";
 import QuestionModal from "./test"
-
+import Nabar from "./../../src/components/NavBar"
 const QuestionPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -13,6 +13,7 @@ const QuestionPage = () => {
   };
   return (
     <div style={{backgroundColor: "#f0f8ff"}}>
+      <div><Nabar/></div>
       <div className="flex mt-10 justify-center">
         <div className="w-[110px] h-[190px] mr-5 flex flex-col justify-center ml-5">
           <div className="w-full bg-green-400 font-bold px-1 flex justify-end items-center">
@@ -116,6 +117,7 @@ const QuestionPage = () => {
                 />
               </li>
           
+      
         </div>
         
   );

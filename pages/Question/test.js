@@ -5,13 +5,14 @@ const QuestionModal = ({ isModalOpen, showModal, handleCancel }) => {
   return (
     <>
       <Modal
-        title="Đặt câu hỏi"
+        title=""
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
         className="flex justify-center"
+
       >
-       <div id="content" style={{backgroundColor: "#cafafe", width: "500px",marginLeft: "35%",marginTop: "5%", borderRadius: "10%"}}>
+       <div id="content" style={{backgroundColor: "#cafafe", width: "500px", borderRadius: "10%"}}>
         <div className="container py-5">
             <div className="row justify-content-center ">
                 <div className="col-6"> 
@@ -45,16 +46,15 @@ const QuestionModal = ({ isModalOpen, showModal, handleCancel }) => {
         </div>
         <div></div>
       </Modal>
-      <a
-        class="block py-2 pr-4 pl-3 text-gray-700 rounded
-                   hover:bg-gray-100 md:hover:bg-transparent md:border-0
-                    md:hover:text-blue-700 md:p-0 dark:text-gray-400
-                     md:dark:hover:text-white dark:hover:bg-gray-700
-                      dark:hover:text-white md:dark:hover:bg-transparent"
-        onClick={showModal}
+      <button onClick={showModal} className="btn btn-primary" style={{backgroundColor: "#00BFFF",color:"black",  borderRadius: "20px", borderWidth: "2px", borderColor: "black", marginLeft: "70%", width: "200px", height: "40px"}}>
+        Đặt câu hỏi
+      </button>
+      {/* <button
+        
+        color="red"
       >
         Đặt câu hỏi
-      </a>
+      </button> */}
     </>
   );
 };
