@@ -11,6 +11,8 @@ import {
   faBookOpenReader,
   faQuestion,
   faCheckToSlot,
+  faCalendar,
+  faCalendarCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { Menu } from "antd";
 function getItem(label, key, icon, children, type) {
@@ -47,9 +49,14 @@ const items = [
     ]
   ),
   getItem(
+    "Lịch",
+    "calendar",
+    <FontAwesomeIcon icon={faCalendarDays} className="text-[#3380FF]" />
+  ),
+  getItem(
     "Sự kiện",
     "event",
-    <FontAwesomeIcon icon={faCalendarDays} className="text-[#3380FF]" />,
+    <FontAwesomeIcon icon={faCalendarCheck} className="text-[#3380FF]" />,
     [
       getItem(
         "Voting",

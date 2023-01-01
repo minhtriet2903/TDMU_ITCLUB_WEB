@@ -12,11 +12,12 @@ import CodeforceTable from "./CodeforceTable";
 import OnlineContestRanking from "./OnlineContestRanking";
 import axios from "axios";
 import TotalPost from "./totalPost";
+import CalendarPage from "./CalendarPage";
 
 const { Search } = Input;
 export default function Article() {
   const onSearch = (value) => console.log(value);
-  const [menuIndex, setMenuIndex] = useState("onlineContestRanking");
+  const [menuIndex, setMenuIndex] = useState("calendar");
 
   const [data, setData] = useState([]);
   const [codeforceTableData, setCodeforceTableData] = useState([]);
@@ -142,6 +143,7 @@ export default function Article() {
             dataOnlineContestRanking={dataOnlineContestRanking}
           />
         )}
+        {menuIndex == "calendar" && <CalendarPage />}
       </div>
     </div>
   );
