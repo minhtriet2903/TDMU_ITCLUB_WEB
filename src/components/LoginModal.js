@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
+import { GoogleLogin } from "@react-oauth/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import jwt_decode from "jwt-decode";
 
-const Login = ({ isModalOpen, showModal, handleCancel }) => {
+const Login = ({ isModalOpen, showModal, handleCancel, setLoginData }) => {
+  const clientId =
+    "970715451237-9qd17nt9v25sfchrado553vvt7j9svgq.apps.googleusercontent.com";
+
+  const onSuccess = (credentialResponse) => {
+    var userData = jwt_decode(credentialResponse.credential);
+    console.log(userData);
+    setLoginData(userData);
+    localStorage.setItem("loginData", JSON.stringify(userData));
+    handleCancel();
+  };
+
+  const handleFailure = (result) => {
+    alert(result.error);
+  };
+
   return (
-    <>
+    <GoogleOAuthProvider clientId={clientId}>
       <Modal
         title="Đăng nhập"
         open={isModalOpen}
@@ -15,10 +33,11 @@ const Login = ({ isModalOpen, showModal, handleCancel }) => {
           className="w-[400px] items-center flex bg-red-400 h-[50px] rounded-md
         justify-center cursor-pointer"
         >
-          <img src="/googleLogo.png" className="h-[20px] w-[20px]" />
+          {/* <img src="/googleLogo.png" className="h-[20px] w-[20px]" />
           <span className="ml-5 text-white font-bold text-lg">
             Đăng nhập bằng tài khoản Google
-          </span>
+          </span> */}
+          <GoogleLogin onSuccess={onSuccess} onError={handleFailure} />
         </div>
       </Modal>
       <a
@@ -31,7 +50,7 @@ const Login = ({ isModalOpen, showModal, handleCancel }) => {
       >
         Tham gia
       </a>
-    </>
+    </GoogleOAuthProvider>
   );
 };
 export default Login;
