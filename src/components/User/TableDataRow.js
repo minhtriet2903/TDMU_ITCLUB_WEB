@@ -4,9 +4,9 @@ import { faUserPen } from "@fortawesome/free-solid-svg-icons";
 
 class TableDataRow extends Component {
   permissionShow = () => {
-    if (this.props.permission === 1) {
+    if (this.props.permission == 1) {
       return "Quản trị viên";
-    } else if (this.props.permission === 2) {
+    } else if (this.props.permission == 2) {
       return "Cộng tác viên";
     } else {
       return "Thành viên";
