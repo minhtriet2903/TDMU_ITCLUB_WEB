@@ -13,6 +13,7 @@ import {
   faCheckToSlot,
   faCalendar,
   faCalendarCheck,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { Menu } from "antd";
 function getItem(label, key, icon, children, type) {
@@ -64,6 +65,11 @@ const items = [
         <FontAwesomeIcon icon={faCheckToSlot} className="text-[#3380FF]" />
       ),
     ]
+  ),
+  getItem(
+    "Thành viên",
+    "member",
+    <FontAwesomeIcon icon={faUser} className="text-[#3380FF]" />
   ),
   getItem(
     "Hỏi đáp",

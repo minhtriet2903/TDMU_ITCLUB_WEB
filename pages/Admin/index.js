@@ -13,6 +13,7 @@ import OnlineContestRanking from "./OnlineContestRanking";
 import axios from "axios";
 import TotalPost from "./totalPost";
 import CalendarPage from "./CalendarPage";
+import ManageUser from "./ManageUser"
 
 const { Search } = Input;
 export default function Article() {
@@ -144,6 +145,7 @@ export default function Article() {
           />
         )}
         {menuIndex == "calendar" && <CalendarPage />}
+        {menuIndex == "member" && <ManageUser />}
       </div>
     </div>
   );
