@@ -27,7 +27,8 @@
     "react-dom": "18.2.0",
     "react-scripts": "^5.0.1",
     "react-slideshow-image": "^4.0.5",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",
