@@ -22,8 +22,7 @@ export default function Article() {
 
   const [data, setData] = useState([]);
   const [codeforceTableData, setCodeforceTableData] = useState([]);
-  const [dataOnlineContest, setDataOnlineContest] = useState([]);
-  const [dataOnlineContestRanking, setDataOnlineContestRanking] = useState([]);
+  const [dataOnlinRanking, setDataOnlinRanking] = useState([]);
 
   useEffect(() => {
     if (menuIndex == "nckh")
@@ -57,9 +56,9 @@ export default function Article() {
         });
     else if (menuIndex == "onlineContestRanking")
       axios
-        .get("http://localhost:5035/onlineContest", {})
+        .get("http://localhost:5035/onlineRanking", {})
         .then(function (response) {
-          setDataOnlineContest(response.data.allOnlineContests);
+          setDataOnlinRanking(response.data.allOnlineRanking);
         })
         .catch(function (error) {
           // handle error
@@ -98,9 +97,9 @@ export default function Article() {
         });
     else if (menuIndex == "onlineContestRanking")
       axios
-        .get("http://localhost:5035/onlineContest", {})
+        .get("http://localhost:5035/onlineRanking", {})
         .then(function (response) {
-          setDataOnlineContest(response.data.allOnlineContests);
+          setDataOnlinRanking(response.data.allOnlineRanking);
         })
         .catch(function (error) {
           // handle error
@@ -140,8 +139,8 @@ export default function Article() {
         {menuIndex == "question" && <TotalPost data={data} />}
         {menuIndex == "onlineContestRanking" && (
           <OnlineContestRanking
-            dataOnlineContest={dataOnlineContest}
-            dataOnlineContestRanking={dataOnlineContestRanking}
+            dataOnlinRanking={dataOnlinRanking}
+            setDataOnlinRanking={setDataOnlinRanking}
           />
         )}
         {menuIndex == "calendar" && <CalendarPage />}

@@ -10,5 +10,5 @@ import Voting from "../pages/Voting";
 import Article from "../pages/Article";
 
 export default function Home() {
-  return <Question />;
+  return <LandingPage />;
 }

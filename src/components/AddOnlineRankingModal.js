@@ -6,16 +6,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
   const [userName, setUserName] = useState("");
+  const [contestName, setContestName] = useState("");
   const [score, setScore] = useState(0);
   const [ranking, setRanking] = useState(0);
   const [idContest, setIdContest] = useState([]);
 
   const [messageApi, contextHolder] = message.useMessage();
 
-  const hanldeAddAccount = () => {};
+  const handleAddOnlineContestRanking = () => {
+    axios
+      .post("http://localhost:5035/onlineContestRanking", {
+        userName: userName,
+        ranking: ranking,
+        score: score,
+        contestName: contestName,
+      })
+      .then(function (response) {
+        messageApi.open({
+          type: "success",
+          content: "Add Ranking Success",
+        });
+      });
+  };
 
   const onChangeIdContest = (value) => {
     console.log(`selected ${value}`);
+    setContestName(value);
   };
 
   const onSearchContest = (value) => {
@@ -40,7 +56,7 @@ const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
     <>
       {contextHolder}
       <Modal
-        title="Thêm tài khoản Codeforce"
+        title="Thêm kết quả thi online"
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
@@ -142,7 +158,7 @@ const AddOnlineRankingModal = ({ isModalOpen, showModal, handleCancel }) => {
           </div>
         </div>
 
-        <div className="cursor-pointer" onClick={hanldeAddAccount}>
+        <div className="cursor-pointer" onClick={handleAddOnlineContestRanking}>
           Thêm
         </div>
       </Modal>

@@ -10,6 +10,8 @@ const UserRoutes = require("./routes/user");
 const TicketRoutes = require("./routes/ticket");
 const CodeforceAccountRoutes = require("./routes/codeforceAccount");
 const onlineContest = require("./routes/onlineContest");
+const onlineContestRanking = require("./routes/onlineContestRanking");
+const onlineRanking = require("./routes/onlineRanking");
 
 // set up express app
 const app = express();
@@ -23,6 +25,8 @@ app.use(UserRoutes);
 app.use(TicketRoutes);
 app.use(CodeforceAccountRoutes);
 app.use(onlineContest);
+app.use(onlineRanking);
+app.use(onlineContestRanking);
 
 mongoose.Promise = global.Promise;
 
