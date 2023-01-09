@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { faSignOut, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useEffect, useState } from "react";
 import "react-slideshow-image/dist/styles.css";
 import LoginModal from "./LoginModal";
 
@@ -9,6 +11,22 @@ const Nav = () => {
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const [loginData, setLoginData] = useState();
+
+  useEffect(() => {
+    const isUserLogin = localStorage.getItem("loginData")
+      ? JSON.parse(localStorage.getItem("loginData"))
+      : null;
+    if (isUserLogin) {
+      setLoginData(isUserLogin);
+    }
+  }, []);
+
+  const handleSignOut = () => {
+    localStorage.removeItem("loginData");
+    setLoginData(null);
   };
 
   return (
@@ -120,11 +138,30 @@ const Nav = () => {
                 </a>
               </li>
               <li>
-                <LoginModal
-                  showModal={showModal}
-                  isModalOpen={isModalOpen}
-                  handleCancel={handleCancel}
-                />
+                {loginData ? (
+                  <div className="flex">
+                    <div className="">
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        className="w-[20px] h-[20px] mx-2"
+                      />
+                    </div>
+                    <div>{loginData.name}</div>
+                    <div onClick={handleSignOut} className="cursor-pointer">
+                      <FontAwesomeIcon
+                        icon={faSignOut}
+                        className="w-[20px] h-[20px] mx-2"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <LoginModal
+                    showModal={showModal}
+                    isModalOpen={isModalOpen}
+                    handleCancel={handleCancel}
+                    setLoginData={setLoginData}
+                  />
+                )}
               </li>
             </ul>
           </div>
