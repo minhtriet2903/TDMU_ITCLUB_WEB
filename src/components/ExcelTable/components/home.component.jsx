@@ -18,7 +18,7 @@ const HomeComponent = () => {
                     const filler=[]
                     rows.map(row => {
                         var name=row.name
-                        if (name.includes("TDMU_")) {
+                        if (name.includes("TDMU")) {
                             filler.push(row)
                         }
                     })
