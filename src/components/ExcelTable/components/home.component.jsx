@@ -15,14 +15,7 @@ const HomeComponent = () => {
 
                 if (sheets.length) {
                     const rows = utils.sheet_to_json(wb.Sheets[sheets[0]]);
-                    const filler=[]
-                    rows.map(row => {
-                        var name=row.name
-                        if (name.includes("TDMU_")) {
-                            filler.push(row)
-                        }
-                    })
-                    setMovies(filler)
+                    setMovies(rows)
                 }
             }
             reader.readAsArrayBuffer(file);
